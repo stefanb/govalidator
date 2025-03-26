@@ -181,6 +181,8 @@ func NotEmpty(v interface{}) ValidationFunc {
 		switch val.Kind() {
 		case reflect.Map, reflect.Slice:
 			valid = val.Len() > 0 && !val.IsNil()
+		case reflect.String:
+			valid = len(strings.TrimSpace(val.String())) > 0
 		default:
 			valid = !val.IsZero()
 		}

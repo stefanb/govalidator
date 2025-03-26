@@ -709,6 +709,10 @@ func TestNotEmpty(t *testing.T) {
 			val:    "",
 			expErr: errors.New(validateEmpty),
 		},
+		"whitespace string": {
+			val:    "    ",
+			expErr: errors.New(validateEmpty),
+		},
 		"non-empty time": {
 			val: time.Now(),
 		},
@@ -847,6 +851,12 @@ func TestEmpty(t *testing.T) {
 		},
 		"empty string": {
 			val: "",
+		},
+		"whitespace string": {
+			val: "   	",
+		},
+		"complex whitespace string": {
+			val: "   	\t\t\n   \u00a0 \u2003 \u2009",
 		},
 		"non-empty time": {
 			val:    time.Now(),
